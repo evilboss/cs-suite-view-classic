@@ -6,7 +6,7 @@
     <div class="row">
 
         <?php
-        function keytime($period)
+       /* function keytime($period)
         {
 
             $c = count($period);
@@ -23,7 +23,7 @@
             }
 
 
-        }
+        }*/
 
         function get_date_list($cam_name, $file_path)
         {
@@ -192,7 +192,7 @@
         }
 
         ?>
-        <div class="col s8">
+        <div class="col s12">
             <?php
 
             for ($i = 1; $i <= count($camera); $i++) {
@@ -321,26 +321,15 @@
             ?>
 
         </div>
-        <div class="col s4">
-            <h2 class="blue-text text-darken-2">Bookmarks</h2>
 
 
-            <table class="hoverable" border="1">
-                <tr>
-                    <td>Title</td>
-                    <td>Start Time</td>
-                    <td>End Time</td>
-                    <td>Action</td>
 
 
-                </tr>
-
-                <?php keytime($period); ?>
-
-        </div>
-        <div class="col s3">
 
 
-        </div>
+                <?php /*keytime($period);*/ ?>
+
+
+
     </div>
 </div>

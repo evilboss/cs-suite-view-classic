@@ -167,7 +167,7 @@ $end = $period[$period_n]['period_end_label'];
 <div class="container">
     <?php
 
-    echo "<a href='index.php'>Go Back </a><h2 class='blue-text' >Side By Side View</h2><table border='1' style='' border='1' style='text-align:left;
+    echo "<a href='index.php'>Go Back </a><h2 class='blue-text' >Frame by Frame</h2><table border='1' style='' border='1' style='text-align:left;
     vertical-align:middle;'><tr> <td colspan='43' style='text-align:center;'>{$period_name}  - {$start} {$end}</td></tr>";
     }
 
@@ -311,7 +311,143 @@ $end = $period[$period_n]['period_end_label'];
 
 
     }
+    function create_sidebyside_output($array, $camera, $file_path)
+    {
+        $photos = array();
+//var_dump($array);
+        ?>
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <?php
 
+                    //print_r($array);
+                    /* echo "<tr>";*/
+                    for ($i = 1; $i <= count($camera); $i++) {
+                        $camera_name = $camera[$i]['camera_name'];
+                        /*  echo "<th>Time</th>";*/
+                        echo "<li class='tab col s3'><a href='#$camera_name'>$camera_name</a></li>";
+                        //echo "<tr style='border:thin solid gray;' >";
+                        //echo "<th style='border:thin solid gray; width:100px;'>";
+                        //echo $camera_name;
+                        //echo "</th>";
+                        //for($j=0;$j<count($array[$camera_name]);$j++){
+
+                        //echo "<td  style=' text-align:center'><a href='{$array[$camera_name][$j]}'><img src='".$array[$camera_name][$j]."' width='160' height='120' style=''></a></td>";
+
+                        /*}*/
+
+
+                    }
+                    ?>
+
+
+                </ul>
+            </div>
+            <?php
+
+            for ($i = 1; $i <= count($camera); $i++) {
+                $camera_name = $camera[$i]['camera_name'];
+                $camera_list = array(
+                    'name' => $camera[$i]['camera_name']);
+                array_push($photos, $camera_list);
+
+            }; ?>
+
+        </div>
+        <?php
+
+        echo "</tr>";
+
+        //print_r($array);
+        $max = 0;
+        for ($i = 1; $i <= count($camera); $i++) {
+            $cam_name = $camera[$i]['camera_name'];
+            if ($max < count($array[$cam_name])) {
+                $max = count($array[$cam_name]);
+            }
+
+        }
+
+        for ($i = 0; $i < $max; $i++) {
+
+            $previous_stop_point = array(0 => array(0 => "no file", 1 => "no file"));
+
+            echo "<tr>";
+            for ($j = 1; $j <= count($camera); $j++) {
+                $f = 1;
+                $p_s_p = $previous_stop_point[$f][1];
+                $c_f_n = $array[$cam_name][$i];
+                $e = explode($file_path, $c_f_n);
+                $e1 = explode("_", $e[1]);
+                $e2 = $e1[2];
+
+
+                if ($e2 == $p_s_p) {
+                    $f = $f + 1;
+
+                }
+                $f = $f + 1;
+                $cam_name = $camera[$j]['camera_name'];
+                $cam_width = $camera[$j]['camera_thumb_width'];
+                $cam_height = $camera[$j]['camera_thumb_height'];
+                if ($array[$cam_name][$i] == "" OR $array[$cam_name][$i] == NULL) {
+
+                    $array[$cam_name][$i] = "no_picture";
+                }
+
+                if ($array[$cam_name][$i] !== "no_picture") {
+                    $output = "";
+
+                    $time_formatted = "24:00";
+
+
+                    for ($p = 0; $p < 5; $p++) {
+                        $f_n = $array[$cam_name][$i][0];
+                        $width = $camera[$j]['camera_thumb_width'];
+                        $height = $camera[$j]['camera_thumb_height'];
+                        $slice = explode(",", $f_n);
+
+
+                        if ($slice[$p] !== "") {
+                            $time_formatted = get_time_formatted($file_path, $slice[$p]);
+                            for ($t = 0; $t < count($photos); $t++) {
+                                if ($cam_name == $photos[$t]['name']) {
+                                    $itemOut = "<a href='$slice[$p]'><img src='$slice[$p]' width='$width',height='$height'></a>";
+                                    $photos[$t]['item'] = $photos[$t]['item'] . $itemOut;
+
+                                }
+
+                            }
+                            $output .= "<a href='$slice[$p]'><img src='$slice[$p]' width='$width',height='$height'></a>";
+
+                        } else {
+                            break;
+                        }
+                    }
+                    /*echo "<td>{$time_formatted}</td><td  style=' text-align:left'>$output</td>";*/
+
+
+                } else {
+                    echo "<td></td><td  style=' text-align:center'>No Image Data</td>";
+                }
+            }
+            //echo $camera_name;
+            //print_r($array[$camera_name]);
+
+            echo "</tr>";
+
+
+        }
+        for ($t = 0; $t < count($photos); $t++) {
+            ?>
+            <div id="<?php print_r($photos[$t]['name']) ?>"> <?php print_r($photos[$t]['item']) ?> </div>
+            <?php
+
+        }
+
+
+    }
     ?>
 
 
@@ -503,8 +639,6 @@ $end = $period[$period_n]['period_end_label'];
 
 
     }
-
-
     function show_all_other_minutes_with_same_time($time, $file_path, $file_begining, $camera_name, $real_path, $camera, $period, $hour, $minute, $date, $time_m)
     {
 
