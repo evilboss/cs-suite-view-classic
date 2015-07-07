@@ -306,7 +306,7 @@ $end = $period[$period_n]['period_end_label'];
             ?>
             <div id="<?php print_r($photos[$t]['name']) ?>"> <?php print_r($photos[$t]['item']) ?> </div>
             <?php
-            
+
         }
 
 
@@ -392,6 +392,8 @@ $end = $period[$period_n]['period_end_label'];
         $real_path = $file_path . $cam_name . "/" . $real_date . "/";
         $images_array = array_diff(scandir($real_path, 1), array('..', '.'));
         $full_img_name = "sss.jpg";
+        view_single_img_footer($camera, $cam_name, $period, $hour, $minute, $date, $file_path, $time_m);
+
         for ($i = 0; $i < count($images_array); $i++) {
 
             $p = explode("_", $images_array[$i]);
@@ -411,20 +413,18 @@ $end = $period[$period_n]['period_end_label'];
 
             echo "<div class='container'><h2><a href='index.php'>Back To Main Page</a<</h2><table border='1'>
 <tbody><tr><td colspan='3'><div class='col s12'><img src='{$real_path}{$full_img_name}'></div></td></tr> <br/><br/>";
-            view_single_img_footer($camera, $cam_name, $period, $hour, $minute, $date, $file_path, $time_m);
             show_all_other_minutes_with_same_time($time, $file_path, $full_img_name, $cam_name, $real_path, $camera, $period, $hour, $minute, $date, $time_m);
 
         } else {
 
             jump_to_next_avilable_photo($time, $file_path, $full_img_name, $cam_name, $real_path, $camera, $period, $hour, $minute, $date, $time_m);
-
             echo "<div class='container'><h2><a href='index.php'>Back To Main Page</a<</h2><table border='1'>
 <tbody><tr><td colspan='3'>Image Not FOund</td></tr>";
-            view_single_img_footer($camera, $cam_name, $period, $hour, $minute, $date, $file_path, $time_m);
+
             echo "";
         }
 
-        echo "</tbody></table>";
+        echo "</tbody></table></div>";
 
 
     }
@@ -434,13 +434,10 @@ $end = $period[$period_n]['period_end_label'];
     {
         $location = "";
         for ($i = 1; $i <= count($camera); $i++) {
-
             if ($camera[$i]['camera_name'] == $cam_name) {
                 $location = $camera[$i]['camera_location'];
                 break;
             }
-
-
         }
         if ($minute == "59") {
 
@@ -495,7 +492,14 @@ $end = $period[$period_n]['period_end_label'];
         }
 
 
-        echo "<tr class='center-align'><td> <a href='viewv2.php?single=1&date={$date}&hour={$later_time_hour}&minute={$later_time_minute}&cam_name={$cam_name}'>&lt;-Back</a></td><td align='center'>{$cam_name} - {$date} - {$location} </td><td align='right'><a href='viewv2.php?single=1&date={$date}&hour={$next_time_hour}&minute={$next_time_minute}&cam_name={$cam_name}'>Next -&gt;</a></td></tr></div>";
+        echo " <div class='container right-align'>
+ <div>{$cam_name} - {$date} - {$location} </div>
+ <div class='right'>
+ <a href='viewv2.php?single=1&date={$date}&hour={$later_time_hour}&minute={$later_time_minute}&cam_name={$cam_name}' class='extrapadding left'><i class='fa fa-arrow-left fa-2x'></i></a>
+
+ <a href='viewv2.php?single=1&date={$date}&hour={$next_time_hour}&minute={$next_time_minute}&cam_name={$cam_name}' class='extrapadding right'><i class='fa fa-arrow-right fa-2x'></i>
+ </div>
+ </div>";
 
 
     }
@@ -524,7 +528,6 @@ $end = $period[$period_n]['period_end_label'];
 
             } else {
                 echo "<div class='col s12'><img class='center-align img-responsive' src='$ss[$i]'></div>";
-                view_single_img_footer($camera, $camera_name, $period, $hour, $minute, $date, $file_path, $time_m);
             }
 
         }
