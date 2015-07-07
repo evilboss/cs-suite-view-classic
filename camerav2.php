@@ -16,7 +16,7 @@
                 echo "<td>{$period[$i]['period_label']}</td>";
                 echo "<td>{$period[$i]['period_start_label']}</td>";
                 echo "<td>{$period[$i]['period_end_label']}</td>";
-                echo "<td><a   target='_blank'  href='viewv2.php?period={$i}'> Side-by-Side</a></td>";
+                echo "<td><a   target='_blank'  href='viewv2.php?period={$i}'> Frame by Frame</a></td>";
                 echo "</tr>";
 
 
@@ -232,7 +232,7 @@
                         <i class="material-icons right">more_vert</i></span>
 
                             <p><a href='<?php echo $link_url; ?>'><i class="fa fa-camera fa-2x"></i></a>&nbsp;
-                                <a href='rtsp://<?php echo $cam_ext; ?>'><i class="fa fa-video-camera fa-2x"></i></a>&nbsp;
+                                <a href='<?php echo $cam_ext; ?>'><i class="fa fa-video-camera fa-2x"></i></a>&nbsp;
                                     <a target='_blank' href='<?php echo $today; ?>'><i class="fa fa-clock-o fa-2x"></i></a>
                             </p>
                         </div>
@@ -256,12 +256,12 @@
                             <div>
                                 Internal Access: <a target='_blank'
                                                     href='viewv2.php?live=1&&rtsp=<?php echo $cam_lip; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
-                                | <a target='_blank' href='rtsp://<?php echo $cam_lip; ?>'>App</a>
+                                | <a target='_blank' href='<?php echo $cam_lip; ?>'>App</a>
                             </div>
                             <div>
                                 External Access: <a target='_blank'
                                                     href='viewv2.php?live=1&&rtsp=<?php echo $cam_ext; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
-                                | <a target='_blank' href='rtsp://<?php echo $cam_ext; ?>'>App</a>
+                                | <a target='_blank' href='<?php echo $cam_ext; ?>'>App</a>
                             </div>
                             <div>
                                 Playback:
