@@ -218,7 +218,10 @@
                 $time_passed = last_still($cam_name, $file_path);
                 $today = get_today_mp4($cam_name, $file_path);
                 $yesterday = get_yesterday_mp4($cam_name, $file_path);
-                $days_ago = date('Y-m-d')
+                $days_ago = date('Y-m-d');
+                $cam_username=$camera[$i]['camera_rtsp_username'];
+                $cam_password=$camera[$i]['camera_rtsp_password'];
+
                 ?>
                 <div class="camera-list">
                     <div class="card col s6">
@@ -250,18 +253,19 @@
                                 Resolution: <?php echo $cam_res; ?>
                             </div>
                             <div>
-                                Local IP: <?php echo $cam_lip; ?>
+                                IP: <?php echo $cam_lip; ?>
                             </div>
 
                             <div>
-                                Internal Access: <a target='_blank'
-                                                    href='viewv2.php?live=1&&rtsp=<?php echo $cam_lip; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
-                                | <a target='_blank' href='<?php echo $cam_lip; ?>'>App</a>
-                            </div>
-                            <div>
-                                External Access: <a target='_blank'
+                                Live View: <a target='_blank'
                                                     href='viewv2.php?live=1&&rtsp=<?php echo $cam_ext; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
                                 | <a target='_blank' href='<?php echo $cam_ext; ?>'>App</a>
+                            </div>
+                            <div>
+                                Username: <?php echo $cam_username; ?>
+                            </div>
+                            <div>
+                                Password: <?php echo $cam_password; ?>
                             </div>
                             <div>
                                 Playback:
