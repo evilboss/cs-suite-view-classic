@@ -1,10 +1,75 @@
-.indicator{
+.indicator {
     background-color: deepskyblue !important;
 }
-.tab a{
+
+.tab a {
     color: deepskyblue !important;
 }
 
-.extrapadding{
+.extrapadding {
     padding: 20px;
 }
+
+.picker__close, .picker__today {
+    color: deepskyblue !important;
+}
+
+.picker__date-display {
+    background-color: deepskyblue !important;
+}
+
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+    background-color: deepskyblue !important;
+}
+
+.picker__day.picker__day--today {
+    color: dodgerblue !important;
+}
+
+.picker__weekday-display {
+    background-color: deepskyblue !important;
+}
+
+.dropdown-content {
+    width: auto !important;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+}
+
+.icon-text {
+    font-weight: 200;
+}
+
+.text-black {
+    color: black !important;
+}
+
+.nav-color {
+    background-color: #039be5;
+}
+
+.paging-paddding {
+    padding: 20px;
+}
+
+.paging-home-padding {
+    padding: 0px 10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .icon {
+        display: none;
+
+    }
+}
+
+.horizontal-scroll {
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 100vh;
+}
+

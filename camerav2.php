@@ -6,24 +6,24 @@
     <div class="row">
 
         <?php
-       /* function keytime($period)
-        {
+        /* function keytime($period)
+         {
 
-            $c = count($period);
-            for ($i = 1; $i <= $c; $i++) {
+             $c = count($period);
+             for ($i = 1; $i <= $c; $i++) {
 
-                echo "<tr>";
-                echo "<td>{$period[$i]['period_label']}</td>";
-                echo "<td>{$period[$i]['period_start_label']}</td>";
-                echo "<td>{$period[$i]['period_end_label']}</td>";
-                echo "<td><a   target='_blank'  href='viewv2.php?period={$i}'> Frame by Frame</a></td>";
-                echo "</tr>";
-
-
-            }
+                 echo "<tr>";
+                 echo "<td>{$period[$i]['period_label']}</td>";
+                 echo "<td>{$period[$i]['period_start_label']}</td>";
+                 echo "<td>{$period[$i]['period_end_label']}</td>";
+                 echo "<td><a   target='_blank'  href='viewv2.php?period={$i}'> Frame by Frame</a></td>";
+                 echo "</tr>";
 
 
-        }*/
+             }
+
+
+         }*/
 
         function get_date_list($cam_name, $file_path)
         {
@@ -219,8 +219,8 @@
                 $today = get_today_mp4($cam_name, $file_path);
                 $yesterday = get_yesterday_mp4($cam_name, $file_path);
                 $days_ago = date('Y-m-d');
-                $cam_username=$camera[$i]['camera_rtsp_username'];
-                $cam_password=$camera[$i]['camera_rtsp_password'];
+                $cam_username = $camera[$i]['camera_rtsp_username'];
+                $cam_password = $camera[$i]['camera_rtsp_password'];
 
                 ?>
                 <div class="camera-list">
@@ -234,9 +234,9 @@
                         <br><?php echo $time_passed; ?>
                         <i class="material-icons right">more_vert</i></span>
 
-                            <p><a href='<?php echo $link_url; ?>'><i class="fa fa-camera fa-2x"></i></a>&nbsp;
-                                <a href='<?php echo $cam_ext; ?>'><i class="fa fa-video-camera fa-2x"></i></a>&nbsp;
-                                    <a target='_blank' href='<?php echo $today; ?>'><i class="fa fa-clock-o fa-2x"></i></a>
+                            <p><a href='<?php echo $link_url; ?>' class="tooltipped" data-position='bottom' data-delay='50' data-tooltip="View today's Snapshots"><i class="fa fa-camera fa-2x"></i></a>&nbsp;
+                                <a href='<?php echo $cam_ext; ?>'  class="tooltipped" data-position='bottom' data-delay='50' data-tooltip="Real Time Live View"><i class="fa fa-video-camera fa-2x"></i></a>&nbsp;
+                                <a target='_blank' href='<?php echo $today; ?>'  class="tooltipped" data-position='top' data-delay='50' data-tooltip="Playback Video since 12:00 midnight"><i class="fa fa-clock-o fa-2x"></i></a>
                             </p>
                         </div>
                         <div class="card-reveal" style="display: none; transform: translateY(0px);">
@@ -258,8 +258,19 @@
 
                             <div>
                                 Live View: <a target='_blank'
-                                                    href='viewv2.php?live=1&&rtsp=<?php echo $cam_ext; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
+                                              href='viewv2.php?live=1&&rtsp=<?php echo $cam_ext; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
                                 | <a target='_blank' href='<?php echo $cam_ext; ?>'>App</a>
+                                <div>
+                                    <form> <div><label></label><input id="selectedDate" type="date" class="datepicker" placeholder="Others"></div>
+                                    </form>
+
+                                    <script>
+                                        $('.datepicker').pickadate({
+                                            selectMonths: true, // Creates a dropdown to control month
+                                            selectYears: 15 // Creates a dropdown of 15 years to control year
+                                        });
+                                    </script>
+                                </div>
                             </div>
                             <div>
                                 Username: <?php echo $cam_username; ?>
@@ -271,15 +282,26 @@
                                 Playback:
                                 <a target='_blank' href='<?php echo $today; ?>'>Today</a>|
                                 <a target='_blank' href='<?php echo $yesterday; ?>'>Yesterday</a>
+
+                                <div>
+                                        <form> <div><label></label><input id="selectedDate" type="date" class="datepicker" placeholder="Others"></div>
+                                        </form>
+
+                                    <script>
+                                        $('.datepicker').pickadate({
+                                            selectMonths: true, // Creates a dropdown to control month
+                                            selectYears: 15 // Creates a dropdown of 15 years to control year
+                                        });
+                                    </script>
+                                </div>
+
                             </div>
                             <div>
-                                Snapshot: <div><a href='<?php echo $link_url; ?>'><i class="fa fa-camera fa-3x"></i></a></div>
+                                Snapshot:
+                                <div><a href='<?php echo $link_url; ?>'><i class="fa fa-camera fa-3x tooltipped" data-position='top' data-delay='50' data-tooltip="Just Now"></i></a></div>
 
 
                             </div>
-
-                            <p>Here is some more information about this location that is only revealed once clicked
-                                on.</p>
                         </div>
                     </div>
                 </div>
@@ -323,12 +345,7 @@
         </div>
 
 
-
-
-
-
-                <?php /*keytime($period);*/ ?>
-
+        <?php /*keytime($period);*/ ?>
 
 
     </div>
