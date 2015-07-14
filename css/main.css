@@ -73,3 +73,29 @@
     height: 100vh;
 }
 
+.extra-margin-top {
+    margin-top: 30px;
+}
+
+.no-shadow {
+    box-shadow: none !important;
+    margin-top: 50px;
+}
+
+.content-center {
+    margin-top: 15%;
+}
+
+.hidden-chars {
+    position: relative;
+    display: inline-block;
+}
+
+._return:after {
+    opacity: 0.4;
+    content: "¬"
+}
+._original{
+    background-color:rgb(66, 133, 244);
+    color: #fff;
+}

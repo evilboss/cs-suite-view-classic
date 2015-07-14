@@ -289,7 +289,8 @@ $end = $period[$period_n]['period_end_label'];
 <div class="container">
     <?php
 
-    echo "<a href='index.php'>Go Back </a><h2 class='blue-text' >Frame by Frame</h2><table border='1' style='' border='1' style='text-align:left;
+    echo "<div class='right'>
+<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a></div><h2 class='blue-text' >Frame by Frame</h2><table border='1' style='' border='1' style='text-align:left;
     vertical-align:middle;'><tr> <td colspan='43' style='text-align:center;'>{$period_name}  - {$start} {$end}</td></tr>";
     }
     function bookmark_header($period_n, $period, $camera, $file_path){
@@ -301,7 +302,7 @@ $end = $period[$period_n]['period_end_label'];
         <?php
 
         echo "<div class='right'>
-<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-3x'></i></a>
+<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a>
  </div>
 <h2 class='blue-text' >Side By Side</h2>
 
@@ -738,13 +739,19 @@ for ($i = 0; $i < $max; $i++) {
 
         }
 
-
-        echo " <div class='container right-align'>
- <div>{$cam_name} - {$date} - {$location} </div>
+        echo "<div class=''>
+ <div class='center-align card card-content no-shadow left'><span class='card-title grey-text text-darken-4'>{$cam_name} - {$date} - {$location}</span></div>
  <div class='right paging-paddding'>
- <a href='viewv2.php?single=1&date={$date}&hour={$later_time_hour}&minute={$later_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-left fa-2x'></i></a>
-<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-2x'></i></a>
- <a href='viewv2.php?single=1&date={$date}&hour={$next_time_hour}&minute={$next_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-right fa-2x'></i>
+ <a href='viewv2.php?single=1&date={$date}&hour={$later_time_hour}&minute={$later_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-left fa-5x'></i></a>
+<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a>";
+        echo "<a class='dropdown-button' href='#' data-activates='dropdown1'><image style='hight=50px;width: 50px' src='images/hour-icon-blue.png'></image></a>
+  <ul id='dropdown1' class='left dropdown-content'>";
+
+        for ($i = 0; $i <= 24; $i++) {
+            echo "<li ><a href='viewv2.php?single=1&date=$date&hour=$i&minute=50&cam_name=$cam_name' class='blue-text'>$i</a><li>";
+        }
+        echo "</ul>
+ <a href='viewv2.php?single=1&date={$date}&hour={$next_time_hour}&minute={$next_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-right fa-5x'></i>
  </div>
  </div>";
 
