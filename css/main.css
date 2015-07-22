@@ -79,7 +79,7 @@
 
 .no-shadow {
     box-shadow: none !important;
-    margin-top: 50px;
+    padding-top: 20px;
 }
 
 .content-center {
@@ -98,4 +98,15 @@
 ._original{
     background-color:rgb(66, 133, 244);
     color: #fff;
+}
+.angular-icon{
+    width: 180px;
+    height: 70px;
+}
+.php-icon{
+    width: 140px;
+    height: 70px;
+}
+.suite-text{
+    width: 200px;
 }

@@ -657,22 +657,23 @@ for ($i = 0; $i < $max; $i++) {
 
 
         }
-        if (file_exists($real_path . $full_img_name)) {
 
-            echo "<div class='container'><table border='1'>
-<tbody><tr><td colspan='3'><div class='col s12'><img src='{$real_path}{$full_img_name}'></div></td></tr> <br/><br/>";
+        if (file_exists($real_path . $full_img_name)) {
+            echo "<div class='container'><img style='width: 100%;' src='{$real_path}{$full_img_name}'></div>";
             show_all_other_minutes_with_same_time($time, $file_path, $full_img_name, $cam_name, $real_path, $camera, $period, $hour, $minute, $date, $time_m);
 
         } else {
 
-            jump_to_next_avilable_photo($time, $file_path, $full_img_name, $cam_name, $real_path, $camera, $period, $hour, $minute, $date, $time_m);
-            echo "<div class='container'><h2><a href='index.php'>Back To Main Page</a><</h2><table border='1'>
-<tbody><tr><td colspan='3'>Image Not FOund</td></tr>";
+
+            echo "<div class='container content-center center-align'>
+<img src='images/notfound.png'>
+</div>";
 
             echo "";
         }
 
-        echo "</tbody></table></div></div>";
+
+
 
 
     }
@@ -739,19 +740,20 @@ for ($i = 0; $i < $max; $i++) {
 
         }
 
-        echo "<div class=''>
+        echo "<div class='container'>
+
  <div class='center-align card card-content no-shadow left'><span class='card-title grey-text text-darken-4'>{$cam_name} - {$date} - {$location}</span></div>
  <div class='right paging-paddding'>
- <a href='viewv2.php?single=1&date={$date}&hour={$later_time_hour}&minute={$later_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-left fa-5x'></i></a>
-<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a>";
-        echo "<a class='dropdown-button' href='#' data-activates='dropdown1'><image style='hight=50px;width: 50px' src='images/hour-icon-blue.png'></image></a>
+ <a href='viewv2.php?single=1&date={$date}&hour={$later_time_hour}&minute={$later_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-left fa-2x'></i></a>
+<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-2x'></i></a>";
+        echo "<a class='dropdown-button' href='#' data-activates='dropdown1'><image style='height=1.5rem;width: 1.5rem' src='images/hour-icon-blue.png'></image></a>
   <ul id='dropdown1' class='left dropdown-content'>";
 
-        for ($i = 0; $i <= 24; $i++) {
+        for ($i = 0; $i <= 23; $i++) {
             echo "<li ><a href='viewv2.php?single=1&date=$date&hour=$i&minute=50&cam_name=$cam_name' class='blue-text'>$i</a><li>";
         }
         echo "</ul>
- <a href='viewv2.php?single=1&date={$date}&hour={$next_time_hour}&minute={$next_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-right fa-5x'></i>
+ <a href='viewv2.php?single=1&date={$date}&hour={$next_time_hour}&minute={$next_time_minute}&cam_name={$cam_name}'><i class='fa fa-arrow-right fa-2x'></i></a>
  </div>
  </div>";
 
@@ -780,7 +782,7 @@ for ($i = 0; $i < $max; $i++) {
                 continue;
 
             } else {
-                echo "<div class='col s12'><img class='center-align img-responsive' src='$ss[$i]'></div>";
+                echo "<div class='container'><img style='width:100%;' src='$ss[$i]'></div>";
             }
 
         }

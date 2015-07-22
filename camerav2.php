@@ -23,8 +23,8 @@
              }
 
 
-         }*/
 
+         }*/
         function get_date_list($cam_name, $file_path)
         {
 
@@ -234,9 +234,17 @@
                         <br><?php echo $time_passed; ?>
                         <i class="material-icons right">more_vert</i></span>
 
-                            <p><a href='<?php echo $link_url; ?>' class="tooltipped" data-position='bottom' data-delay='50' data-tooltip="View today's Snapshots"><i class="fa fa-camera fa-2x"></i></a>&nbsp;
-                                <a href='<?php echo $cam_ext; ?>'  class="tooltipped" data-position='bottom' data-delay='50' data-tooltip="Real Time Live View"><i class="fa fa-video-camera fa-2x"></i></a>&nbsp;
-                                <a target='_blank' href='<?php echo $today; ?>'  class="tooltipped" data-position='top' data-delay='50' data-tooltip="Playback Video since 12:00 midnight"><i class="fa fa-clock-o fa-2x"></i></a>
+                            <p><a href='<?php echo $link_url; ?>' class="tooltipped" data-position='bottom'
+                                  data-delay='50' data-tooltip="View today's Snapshots"><i
+                                        class="fa fa-camera fa-2x"></i></a>&nbsp;
+                                <a href='<?php echo $cam_ext; ?>' class="tooltipped" data-position='bottom'
+                                   data-delay='50' data-tooltip="Real Time Live View"><i
+                                        class="fa fa-video-camera fa-2x"></i></a>&nbsp;
+                                <a target='_blank' href='<?php echo $today; ?>' class="tooltipped" data-position='top'
+                                   data-delay='50' data-tooltip="Playback Video since 12:00 midnight"><i
+                                        class="fa fa-clock-o fa-2x"></i></a>
+
+
                             </p>
                         </div>
                         <div class="card-reveal" style="display: none; transform: translateY(0px);">
@@ -255,23 +263,6 @@
                             <div>
                                 IP: <?php echo $cam_lip; ?>
                             </div>
-
-                            <div>
-                                Live View: <a target='_blank'
-                                              href='viewv2.php?live=1&&rtsp=<?php echo $cam_ext; ?>&&cam_name=<?php echo $cam_name; ?>&&i=<?php echo $i; ?>'>Web</a>
-                                | <a target='_blank' href='<?php echo $cam_ext; ?>'>App</a>
-                                <div>
-                                    <form> <div><label></label><input id="selectedDate" type="date" class="datepicker" placeholder="Others"></div>
-                                    </form>
-
-                                    <script>
-                                        $('.datepicker').pickadate({
-                                            selectMonths: true, // Creates a dropdown to control month
-                                            selectYears: 15 // Creates a dropdown of 15 years to control year
-                                        });
-                                    </script>
-                                </div>
-                            </div>
                             <div>
                                 Username: <?php echo $cam_username; ?>
                             </div>
@@ -279,29 +270,74 @@
                                 Password: <?php echo $cam_password; ?>
                             </div>
                             <div>
-                                Playback:
-                                <a target='_blank' href='<?php echo $today; ?>'>Today</a>|
-                                <a target='_blank' href='<?php echo $yesterday; ?>'>Yesterday</a>
+
+                                <a target='_blank' href='<?php echo $cam_ext; ?>'><i
+                                        class="fa fa-video-camera fa-2x"></i></a>
 
                                 <div>
-                                        <form> <div><label></label><input id="selectedDate" type="date" class="datepicker" placeholder="Others"></div>
-                                        </form>
+                                    <form>
+                                        <div><label></label><input id="selectedDate" type="date" class="datepicker"
+                                                                   placeholder="Others"></div>
+                                    </form>
 
                                     <script>
                                         $('.datepicker').pickadate({
+                                          format: 'You selecte!d: dddd, dd mmm, yyyy',
+                                         formatSubmit: 'yyyy/mm/dd',
+                                            onClick: console.log('click'),
                                             selectMonths: true, // Creates a dropdown to control month
                                             selectYears: 15 // Creates a dropdown of 15 years to control year
                                         });
                                     </script>
                                 </div>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-camera fa-2x blue-text"></i>
+                                    <?php
+                                    for ($ago = 0; $ago <= 6; $ago++) {
+                                        $date = new DateTime();
+                                        $date->sub(new DateInterval('P' . $ago . 'D'));
+
+
+                                        ?>
+                                        <a target="_blank" href="viewv2.php?single=1&date=<?php echo $date->format('Y-m-d');?>&;hour=00&minute=00&cam_name=<?php echo $cam_name ?>" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View <?php echo $date->format('D') . "\n"; ?> Snapshots"><?php echo $date->format('D') . "\n"; ?></a>|
+
+                                        <?php
+                                    }
+
+                                    ?>
+
+
 
                             </div>
                             <div>
-                                Snapshot:
-                                <div><a href='<?php echo $link_url; ?>'><i class="fa fa-camera fa-3x tooltipped" data-position='top' data-delay='50' data-tooltip="Just Now"></i></a></div>
+                                <i class="fa fa-clock-o fa-2x blue-text"></i>
+                                <?php
+                                for ($ago = 0; $ago <= 6; $ago++) {
+                                    $date = new DateTime();
+                                    $date->sub(new DateInterval('P' . $ago . 'D'));
 
+
+                                    ?>
+                                    <a target="_blank"
+                                       href="<?php echo $cam_name . '/' . $date->format('Ymd') . '/' . $cam_name . '_' . $date->format('Ymd') . '.mp4'; ?>"><?php echo $date->format('D') . "\n"; ?></a>|
+                                    <?php
+                                }
+
+                                ?>
+                                <label for='selectedDate' style='color:#039be5;font-size: inherit !important;'>Others</label>
+                                <div>
+                                    <form>
+                                        <div><input id="selectedDate" style="" type="date"  class="datepicker"
+                                                                   placeholder="Others"></div>
+                                    </form>
+
+
+                                </div>
 
                             </div>
+
                         </div>
                     </div>
                 </div>

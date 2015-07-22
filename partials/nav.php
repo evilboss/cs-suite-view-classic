@@ -58,6 +58,7 @@ function keytime($period, $action)
 
                 <li><a class="blue-text" href="">Sign in</a></li>
                 <li><a class="blue-text" href="">Register</a></li>
+                <li><a class="blue-text" href="about.php">About</a></li>
 
             </ul>
             <ul id="bookmark-dropdown" class="dropdown-content">
