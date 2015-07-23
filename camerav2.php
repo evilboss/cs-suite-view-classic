@@ -276,17 +276,25 @@
 
                                 <div>
                                     <form>
-                                        <div><label></label><input id="selectedDate" type="date" class="datepicker"
+                                        <div><label></label><input id="selectedDateVideo" type="date" class="datepicker"
                                                                    placeholder="Others"></div>
                                     </form>
 
                                     <script>
-                                        $('.datepicker').pickadate({
-                                          format: 'You selecte!d: dddd, dd mmm, yyyy',
-                                         formatSubmit: 'yyyy/mm/dd',
-                                            onClick: console.log('click'),
+
+                                        $('#selectedDateVideo').pickadate({
+                                            format: 'yyyymmdd',
+                                            today: 'Today',
+                                            close: 'Cancel',
+                                            closeOnSelect: true,
                                             selectMonths: true, // Creates a dropdown to control month
                                             selectYears: 15 // Creates a dropdown of 15 years to control year
+                                        });
+                                        $('.picker__day').click(function () {
+                                            console.log('klik');
+
+                                            window.location.href = '<?php echo $cam_name; ?>'/<?php echo $year.$month; ?>/crk90-ctv-005_20150720.mp4';
+
                                         });
                                     </script>
                                 </div>
@@ -294,20 +302,22 @@
 
                             <div>
                                 <i class="fa fa-camera fa-2x blue-text"></i>
-                                    <?php
-                                    for ($ago = 0; $ago <= 6; $ago++) {
-                                        $date = new DateTime();
-                                        $date->sub(new DateInterval('P' . $ago . 'D'));
+                                <?php
+                                for ($ago = 0; $ago <= 6; $ago++) {
+                                    $date = new DateTime();
+                                    $date->sub(new DateInterval('P' . $ago . 'D'));
 
-
-                                        ?>
-                                        <a target="_blank" href="viewv2.php?single=1&date=<?php echo $date->format('Y-m-d');?>&;hour=00&minute=00&cam_name=<?php echo $cam_name ?>" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="View <?php echo $date->format('D') . "\n"; ?> Snapshots"><?php echo $date->format('D') . "\n"; ?></a>|
-
-                                        <?php
-                                    }
 
                                     ?>
+                                    <a target="_blank"
+                                       href="viewv2.php?single=1&date=<?php echo $date->format('Y-m-d'); ?>&;hour=00&minute=00&cam_name=<?php echo $cam_name ?>"
+                                       class="tooltipped" data-position="bottom" data-delay="50"
+                                       data-tooltip="View <?php echo $date->format('D') . "\n"; ?> Snapshots"><?php echo $date->format('D') . "\n"; ?></a>|
 
+                                    <?php
+                                }
+
+                                ?>
 
 
                             </div>
@@ -326,11 +336,13 @@
                                 }
 
                                 ?>
-                                <label for='selectedDate' style='color:#039be5;font-size: inherit !important;'>Others</label>
+                                <label for='selectedDate'
+                                       style='color:#039be5;font-size: inherit !important;'>Others</label>
+
                                 <div>
                                     <form>
-                                        <div><input id="selectedDate" style="" type="date"  class="datepicker"
-                                                                   placeholder="Others"></div>
+                                        <div><input id="selectedDate" style="" type="date" class="datepicker"
+                                                    placeholder="Others"></div>
                                     </form>
 
 
