@@ -276,31 +276,66 @@
 
                                 <div>
                                     <form>
-                                        <div><label></label><input id="selectedDateVideo" type="date" class="datepicker"
-                                                                   placeholder="Others"></div>
+                                        <div><label></label><input style="display: none" id="selectedDate<?php echo $i ?>"
+                                                                   onclick="setPicker()" type="date"
+                                                                   class="datepicker"
+                                                                   placeholder="Others"
+                                                                   cameraName="<?php echo $camera[$i]['camera_name']; ?>">
+                                        </div>
                                     </form>
 
                                     <script>
 
-                                        $('#selectedDateVideo').pickadate({
-                                            format: 'yyyymmdd',
-                                            today: 'Today',
-                                            close: 'Cancel',
-                                            closeOnSelect: true,
-                                            selectMonths: true, // Creates a dropdown to control month
-                                            selectYears: 15 // Creates a dropdown of 15 years to control year
-                                        });
-                                        $('.picker__day').click(function () {
-                                            console.log('klik');
+                                        function setPicker() {
+                                            var $input = $('.datepicker').pickadate({
+                                                format: 'yyyymmdd',
+                                                selectMonths: true,
+                                                selectYears: 15,
+                                                onSet: function (event) {
 
-                                            window.location.href = '<?php echo $cam_name; ?>'/<?php echo $year.$month; ?>/crk90-ctv-005_20150720.mp4';
+                                                    if (event.select) {
 
-                                        });
+                                                        for (var item = 0; item < $input.length; item++) {
+                                                            if ($($input[item]).hasClass('picker__input--active')) {
+                                                                var label = $('#' + $input[item].id);
+                                                                var camName = label.attr('cameraName');
+                                                                if ($input[item].id.indexOf("selectedDateVideo") >= 0) {
+                                                                    var url = camName + '/' + $input[item].value + '/' + camName + '_' + $input[item].value + '.mp4';
+                                                                    OpenInNewTab(url);
+                                                                } else {
+                                                                    var date = $input[item].value;
+                                                                    date = insert(date,4,'-');
+                                                                    date = insert(date,7,'-');
+                                                                    var url = 'viewv2.php?single=1&date='+date+'&hour=00&minute=00&cam_name=' + camName;
+                                                                    OpenInNewTab(url);
+
+                                                                }
+
+
+                                                            }
+
+                                                        }
+
+                                                    }
+                                                }
+                                            });
+                                        }
+                                        function OpenInNewTab(url) {
+                                            var currentLocation = window.location;
+                                            console.log(currentLocation + url);
+                                            var win = window.open(currentLocation + url, '_blank');
+                                            win.focus();
+                                        }
+                                        function insert(str, index, value) {
+                                            return str.substr(0, index) + value + str.substr(index);
+                                        }
+
                                     </script>
                                 </div>
                             </div>
 
                             <div>
+                                <div></div>
                                 <i class="fa fa-camera fa-2x blue-text"></i>
                                 <?php
                                 for ($ago = 0; $ago <= 6; $ago++) {
@@ -318,11 +353,12 @@
                                 }
 
                                 ?>
-
+                                <label for='selectedDate<?php echo $i ?>'
+                                       style='color:#039be5;font-size: inherit !important;'>Others</label>
 
                             </div>
                             <div>
-                                <i class="fa fa-clock-o fa-2x blue-text"></i>
+                                <i class="fa fa-clock-o fa-2x blue-text" style="margin-right:7px;"></i>
                                 <?php
                                 for ($ago = 0; $ago <= 6; $ago++) {
                                     $date = new DateTime();
@@ -336,16 +372,16 @@
                                 }
 
                                 ?>
-                                <label for='selectedDate'
+                                <label for='selectedDateVideo<?php echo $i ?>'
                                        style='color:#039be5;font-size: inherit !important;'>Others</label>
 
                                 <div>
                                     <form>
-                                        <div><input id="selectedDate" style="" type="date" class="datepicker"
-                                                    placeholder="Others"></div>
+                                        <div><input id="selectedDateVideo<?php echo $i ?>" style="display: none" type="date"
+                                                    class="datepicker"
+                                                    placeholder="Others"
+                                                    cameraName="<?php echo $camera[$i]['camera_name']; ?>"></div>
                                     </form>
-
-
                                 </div>
 
                             </div>

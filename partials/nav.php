@@ -45,7 +45,6 @@ function keytime($period, $action)
 
             <ul class="right hide-on-med-and-down">
                 <li class=""><a href="index.php" title="Home"><i class="mdi-action-home"></i></a></li>
-                <li class=""><a href="index.php" title="Dashboard"><i class="mdi-action-dashboard"></i></a></li>
                 <li><a title="Bookmarks" class="dropdown-button" href="" data-activates="bookmark-dropdown"><i
                             class="fa fa-bookmark-o"></i></a></li>
                 <li><a title="Filmstrip" class="dropdown-button" href="" data-activates="filmstrip-dropdown"><i
@@ -87,3 +86,4 @@ function keytime($period, $action)
 <!--<h6 class="container">(in beta) version 0.13</h6>-->
 
 </nav>
+
