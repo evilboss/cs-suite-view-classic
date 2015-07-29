@@ -290,7 +290,7 @@ $end = $period[$period_n]['period_end_label'];
     <?php
 
     echo "<div class='right'>
-<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a></div><h2 class='blue-text' >Frame by Frame</h2><table border='1' style='' border='1' style='text-align:left;
+<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-2x'></i></a></div><h2 class='blue-text' >Frame by Frame</h2><table border='1' style='' border='1' style='text-align:left;
     vertical-align:middle;'><tr> <td colspan='43' style='text-align:center;'>{$period_name}  - {$start} {$end}</td></tr>";
     }
     function bookmark_header($period_n, $period, $camera, $file_path){
@@ -302,7 +302,7 @@ $end = $period[$period_n]['period_end_label'];
         <?php
 
         echo "<div class='right'>
-<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a>
+<a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-2x'></i></a>
  </div>
 <h2 class='blue-text' >Side By Side</h2>
 

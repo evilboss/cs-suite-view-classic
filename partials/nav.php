@@ -39,7 +39,7 @@ function keytime($period, $action)
 
 
             <ul class="right">
-                <li><a class="dropdown-button" href="index.php" data-activates="user-dropdown"><i
+                <li><a class="dropdown-button"data-activates="user-dropdown"><i
                             class="mdi-navigation-more-vert"></i></a></li>
             </ul>
 

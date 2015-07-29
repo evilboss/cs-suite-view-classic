@@ -214,6 +214,7 @@
                 $cam_status = $camera[$i]['camera_status'];
                 $cam_res = $camera[$i]['camera_res'];
                 $cam_lip = $camera[$i]['camera_ip'];
+                $cam_intra = $camera[$i]['camera_rtsp_loca'];
                 $cam_ext = $camera[$i]['camera_rtsp_internet'];
                 $time_passed = last_still($cam_name, $file_path);
                 $today = get_today_mp4($cam_name, $file_path);
@@ -237,7 +238,7 @@
                             <p><a href='<?php echo $link_url; ?>' class="tooltipped" data-position='bottom'
                                   data-delay='50' data-tooltip="View today's Snapshots"><i
                                         class="fa fa-camera fa-2x"></i></a>&nbsp;
-                                <a href='<?php echo $cam_ext; ?>' class="tooltipped" data-position='bottom'
+                                <a href='<?php echo $cam_intra; ?>' class="tooltipped" data-position='bottom'
                                    data-delay='50' data-tooltip="Real Time Live View"><i
                                         class="fa fa-video-camera fa-2x"></i></a>&nbsp;
                                 <a target='_blank' href='<?php echo $today; ?>' class="tooltipped" data-position='top'
@@ -270,22 +271,20 @@
                                 Password: <?php echo $cam_password; ?>
                             </div>
                             <div>
+                                <a href='<?php echo $cam_intra; ?>'><i
+                                        class="fa fa-video-camera fa-2x"></i></a> <a><?php echo $cam_intra; ?></a><a href="help.php"><img style='height=1.5rem;width: 1.5rem' src="images/questionmark.png" alt="Help"/></a>
 
-                                <a target='_blank' href='<?php echo $cam_ext; ?>'><i
-                                        class="fa fa-video-camera fa-2x"></i></a>
-
-                                <div>
+                             <!--   <div>
                                     <form>
-                                        <div><label></label><input style="display: none" id="selectedDate<?php echo $i ?>"
+                                        <div><label></label><input style="display: none"
+                                                                   id="selectedDate<?php /*echo $i */?>"
                                                                    onclick="setPicker()" type="date"
                                                                    class="datepicker"
                                                                    placeholder="Others"
-                                                                   cameraName="<?php echo $camera[$i]['camera_name']; ?>">
+                                                                   cameraName="<?php /*echo $camera[$i]['camera_name']; */?>">
                                         </div>
                                     </form>
-
                                     <script>
-
                                         function setPicker() {
                                             var $input = $('.datepicker').pickadate({
                                                 format: 'yyyymmdd',
@@ -304,9 +303,9 @@
                                                                     OpenInNewTab(url);
                                                                 } else {
                                                                     var date = $input[item].value;
-                                                                    date = insert(date,4,'-');
-                                                                    date = insert(date,7,'-');
-                                                                    var url = 'viewv2.php?single=1&date='+date+'&hour=00&minute=00&cam_name=' + camName;
+                                                                    date = insert(date, 4, '-');
+                                                                    date = insert(date, 7, '-');
+                                                                    var url = 'viewv2.php?single=1&date=' + date + '&hour=00&minute=00&cam_name=' + camName;
                                                                     OpenInNewTab(url);
 
                                                                 }
@@ -322,16 +321,14 @@
                                         }
                                         function OpenInNewTab(url) {
                                             var currentLocation = window.location;
-                                            console.log(currentLocation + url);
                                             var win = window.open(currentLocation + url, '_blank');
                                             win.focus();
                                         }
                                         function insert(str, index, value) {
                                             return str.substr(0, index) + value + str.substr(index);
                                         }
-
                                     </script>
-                                </div>
+                                </div>-->
                             </div>
 
                             <div>
@@ -341,21 +338,18 @@
                                 for ($ago = 0; $ago <= 6; $ago++) {
                                     $date = new DateTime();
                                     $date->sub(new DateInterval('P' . $ago . 'D'));
-
-
                                     ?>
                                     <a target="_blank"
                                        href="viewv2.php?single=1&date=<?php echo $date->format('Y-m-d'); ?>&;hour=00&minute=00&cam_name=<?php echo $cam_name ?>"
                                        class="tooltipped" data-position="bottom" data-delay="50"
-                                       data-tooltip="View <?php echo $date->format('D') . "\n"; ?> Snapshots"><?php echo $date->format('D') . "\n"; ?></a>|
+                                       data-tooltip="View <?php echo $date->format('D'); ?> Snapshots">
+                                        <?php echo $ago == 0 ? "Today " : $date->format('D') . ' '; ?></a>|
 
                                     <?php
                                 }
-
                                 ?>
                                 <label for='selectedDate<?php echo $i ?>'
-                                       style='color:#039be5;font-size: inherit !important;'>Others</label>
-
+                                       style='color:#039be5;font-size: inherit !important;'>More</label>
                             </div>
                             <div>
                                 <i class="fa fa-clock-o fa-2x blue-text" style="margin-right:7px;"></i>
@@ -363,21 +357,20 @@
                                 for ($ago = 0; $ago <= 6; $ago++) {
                                     $date = new DateTime();
                                     $date->sub(new DateInterval('P' . $ago . 'D'));
-
-
                                     ?>
                                     <a target="_blank"
-                                       href="<?php echo $cam_name . '/' . $date->format('Ymd') . '/' . $cam_name . '_' . $date->format('Ymd') . '.mp4'; ?>"><?php echo $date->format('D') . "\n"; ?></a>|
+                                       href="<?php echo $cam_name . '/' . $date->format('Ymd') . '/' . $cam_name . '_' . $date->format('Ymd') . '.mp4'; ?>"><?php echo $ago == 0 ? "Today " : $date->format('D') . ' '; ?></a>|
                                     <?php
                                 }
 
                                 ?>
                                 <label for='selectedDateVideo<?php echo $i ?>'
-                                       style='color:#039be5;font-size: inherit !important;'>Others</label>
+                                       style='color:#039be5;font-size: inherit !important;'>More</label>
 
                                 <div>
                                     <form>
-                                        <div><input id="selectedDateVideo<?php echo $i ?>" style="display: none" type="date"
+                                        <div><input id="selectedDateVideo<?php echo $i ?>" style="display: none"
+                                                    type="date"
                                                     class="datepicker"
                                                     placeholder="Others"
                                                     cameraName="<?php echo $camera[$i]['camera_name']; ?>"></div>
