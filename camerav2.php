@@ -268,20 +268,19 @@
                                 Username: <?php echo $cam_username; ?>
                             </div>
                             <div>
-                                Password: <?php echo $cam_password; ?>
+                                Password: <a onclick="javascript:$('#pw<?php echo $i; ?>').toggleClass('show');"><img style='height=1.5rem;width: 1.5rem' src="images/eye.png" alt="show"/></a><a id="pw<?php echo $i; ?>" style="display: none"> <?php echo $cam_password; ?></a>
                             </div>
                             <div>
                                 <a href='<?php echo $cam_intra; ?>'><i
                                         class="fa fa-video-camera fa-2x"></i></a> <a><?php echo $cam_intra; ?></a><a href="help.php"><img style='height=1.5rem;width: 1.5rem' src="images/questionmark.png" alt="Help"/></a>
 
-                             <!--   <div>
-                                    <form>
+
                                         <div><label></label><input style="display: none"
-                                                                   id="selectedDate<?php /*echo $i */?>"
+                                                                   id="selectedDate<?php echo $i ?>"
                                                                    onclick="setPicker()" type="date"
                                                                    class="datepicker"
                                                                    placeholder="Others"
-                                                                   cameraName="<?php /*echo $camera[$i]['camera_name']; */?>">
+                                                                   cameraName="<?php echo $camera[$i]['camera_name']; ?>">
                                         </div>
                                     </form>
                                     <script>
@@ -328,7 +327,7 @@
                                             return str.substr(0, index) + value + str.substr(index);
                                         }
                                     </script>
-                                </div>-->
+
                             </div>
 
                             <div>
@@ -342,7 +341,7 @@
                                     <a target="_blank"
                                        href="viewv2.php?single=1&date=<?php echo $date->format('Y-m-d'); ?>&;hour=00&minute=00&cam_name=<?php echo $cam_name ?>"
                                        class="tooltipped" data-position="bottom" data-delay="50"
-                                       data-tooltip="View <?php echo $date->format('D'); ?> Snapshots">
+                                       data-tooltip="View <?php echo $date->format('l'); ?> Snapshots">
                                         <?php echo $ago == 0 ? "Today " : $date->format('D') . ' '; ?></a>|
 
                                     <?php
@@ -359,7 +358,9 @@
                                     $date->sub(new DateInterval('P' . $ago . 'D'));
                                     ?>
                                     <a target="_blank"
-                                       href="<?php echo $cam_name . '/' . $date->format('Ymd') . '/' . $cam_name . '_' . $date->format('Ymd') . '.mp4'; ?>"><?php echo $ago == 0 ? "Today " : $date->format('D') . ' '; ?></a>|
+                                       href="<?php echo $cam_name . '/' . $date->format('Ymd') . '/' . $cam_name . '_' . $date->format('Ymd') . '.mp4'; ?>"
+                                       class="tooltipped" data-position="bottom" data-delay="50"
+                                       data-tooltip="View <?php echo $date->format('l'); ?> Playbacks"><?php echo $ago == 0 ? "Today " : $date->format('D') . ' '; ?></a>|
                                     <?php
                                 }
 

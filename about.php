@@ -16,7 +16,7 @@
         <li class="collection-item avatar">
             <img src="images/icon-blue.png" alt="" class="circle center-align">
             <img src="images/suite-text.png" alt="" class="suite-text">
-            <span class="title"><h4 class="center-align">Cloudstaff Suite View v1.14</h4> </span>
+            <span class="title"><h4 class="center-align">Cloudstaff Suite View v1.15</h4> </span>
 
             <h5> 2015 <a href="http://cloustaff.com/" target="_blank">
                     <small>&copy; Cloudstaff Inc,.</small>
