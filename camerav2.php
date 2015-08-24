@@ -6,25 +6,6 @@
     <div class="row">
 
         <?php
-        /* function keytime($period)
-         {
-
-             $c = count($period);
-             for ($i = 1; $i <= $c; $i++) {
-
-                 echo "<tr>";
-                 echo "<td>{$period[$i]['period_label']}</td>";
-                 echo "<td>{$period[$i]['period_start_label']}</td>";
-                 echo "<td>{$period[$i]['period_end_label']}</td>";
-                 echo "<td><a   target='_blank'  href='viewv2.php?period={$i}'> Frame by Frame</a></td>";
-                 echo "</tr>";
-
-
-             }
-
-
-
-         }*/
         function get_date_list($cam_name, $file_path)
         {
 
@@ -194,9 +175,23 @@
         ?>
         <div class="col s12">
             <?php
+            if (isset($_GET['camera'])) {
+                $maxCount = count($camera);
 
-            for ($i = 1; $i <= count($camera); $i++) {
-                $cam_name = $camera[$i]['camera_name'];
+                for ($i = 1; $i <= $maxCount; $i++) {
+                    if ($camera[$i]['camera_name'] == $_GET['camera']) {
+
+                    } else {
+                        unset($camera[$i]);
+                    }
+
+                }
+            }
+            $i = 1;
+            foreach ($camera as $myCam) {
+                $i++;
+
+                $cam_name = $myCam['camera_name'];
                 $ss = get_camera_last_image($cam_name, $file_path);
 
                 $beg = $file_path . $cam_name . "/";
@@ -208,32 +203,37 @@
                 $m = substr($file_name[2], 10, 2);
                 $d = substr($file_name[2], 0, 4) . "-" . substr($file_name[2], 4, 2) . "-" . substr($file_name[2], 6, 2);
                 $link_url = "viewv2.php?single=1&date={$d}&hour={$h}&minute={$m}&cam_name={$cam_name}";
-                $cam_width = $camera[$i]['camera_thumb_width'];
-                $cam_height = $camera[$i]['camera_thumb_height'];
-                $cam_location = $camera[$i]['camera_location'];
-                $cam_status = $camera[$i]['camera_status'];
-                $cam_res = $camera[$i]['camera_res'];
-                $cam_lip = $camera[$i]['camera_ip'];
-                $cam_intra = $camera[$i]['camera_rtsp_loca'];
-                $cam_ext = $camera[$i]['camera_rtsp_internet'];
+                $cam_width = $myCam['camera_thumb_width'];
+                $cam_height = $myCam['camera_thumb_height'];
+                $cam_location = $myCam['camera_location'];
+                $cam_status = $myCam['camera_status'];
+                $cam_res = $myCam['camera_res'];
+                $cam_lip = $myCam['camera_ip'];
+                $cam_intra = $myCam['camera_rtsp_loca'];
+                $cam_ext = $myCam['camera_rtsp_internet'];
                 $time_passed = last_still($cam_name, $file_path);
                 $today = get_today_mp4($cam_name, $file_path);
                 $yesterday = get_yesterday_mp4($cam_name, $file_path);
                 $days_ago = date('Y-m-d');
-                $cam_username = $camera[$i]['camera_rtsp_username'];
-                $cam_password = $camera[$i]['camera_rtsp_password'];
-
+                $cam_username = $myCam['camera_rtsp_username'];
+                $cam_password = $myCam['camera_rtsp_password'];
                 ?>
                 <div class="camera-list">
-                    <div class="card col s6">
+                    <?php $bootS = 's6';
+                        if(count($camera)==1){
+                            $bootS = 's12';
+                        }
+                    ?>
+                    <div class="card col <?php echo $bootS?>">
                         <div class="card-image waves-effect waves-block waves-light">
                             <img class="activator"
                                  src="<?php echo $ss; ?>">
                         </div>
                         <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4"><?php echo $cam_name; ?>
-                        <br><?php echo $time_passed; ?>
-                        <i class="material-icons right">more_vert</i></span>
+                    <span class="card-title activator grey-text text-darken-4"><a
+                            href="?camera=<?php echo $cam_name; ?>"><?php echo $cam_name; ?>
+                            <br><?php echo $time_passed; ?>
+                            <i class="material-icons right">more_vert</i></span>
 
                             <p><a href='<?php echo $link_url; ?>' class="tooltipped" data-position='bottom'
                                   data-delay='50' data-tooltip="View today's Snapshots"><i
@@ -268,65 +268,70 @@
                                 Username: <?php echo $cam_username; ?>
                             </div>
                             <div>
-                                Password: <a onclick="javascript:$('#pw<?php echo $i; ?>').toggleClass('show');"><img style='height=1.5rem;width: 1.5rem' src="images/eye.png" alt="show"/></a><a id="pw<?php echo $i; ?>" style="display: none"> <?php echo $cam_password; ?></a>
+                                Password: <a onclick="javascript:$('#pw<?php echo $i; ?>').toggleClass('show');"
+                                             style="cursor: pointer"><img style='height=1.5rem;width: 1.5rem'
+                                                                          src="images/eye.png" alt="show"/></a><a
+                                    id="pw<?php echo $i; ?>" style="display: none"> <?php echo $cam_password; ?></a>
                             </div>
                             <div>
                                 <a href='<?php echo $cam_intra; ?>'><i
-                                        class="fa fa-video-camera fa-2x"></i></a> <a><?php echo $cam_intra; ?></a><a href="help.php"><img style='height=1.5rem;width: 1.5rem' src="images/questionmark.png" alt="Help"/></a>
+                                        class="fa fa-video-camera fa-2x"></i></a> <a><?php echo $cam_intra; ?></a><a
+                                    href="help.php"><img style='height=1.5rem;width: 1.5rem'
+                                                         src="images/questionmark.png" alt="Help"/></a>
 
 
-                                        <div><label></label><input style="display: none"
-                                                                   id="selectedDate<?php echo $i ?>"
-                                                                   onclick="setPicker()" type="date"
-                                                                   class="datepicker"
-                                                                   placeholder="Others"
-                                                                   cameraName="<?php echo $camera[$i]['camera_name']; ?>">
-                                        </div>
-                                    </form>
-                                    <script>
-                                        function setPicker() {
-                                            var $input = $('.datepicker').pickadate({
-                                                format: 'yyyymmdd',
-                                                selectMonths: true,
-                                                selectYears: 15,
-                                                onSet: function (event) {
+                                <div><label></label><input style="display: none"
+                                                           id="selectedDate<?php echo $i ?>"
+                                                           onclick="setPicker()" type="date"
+                                                           class="datepicker"
+                                                           placeholder="Others"
+                                                           cameraName="<?php echo $cam_name; ?>">
+                                </div>
+                                </form>
+                                <script>
+                                    function setPicker() {
+                                        var $input = $('.datepicker').pickadate({
+                                            format: 'yyyymmdd',
+                                            selectMonths: true,
+                                            selectYears: 15,
+                                            onSet: function (event) {
 
-                                                    if (event.select) {
+                                                if (event.select) {
 
-                                                        for (var item = 0; item < $input.length; item++) {
-                                                            if ($($input[item]).hasClass('picker__input--active')) {
-                                                                var label = $('#' + $input[item].id);
-                                                                var camName = label.attr('cameraName');
-                                                                if ($input[item].id.indexOf("selectedDateVideo") >= 0) {
-                                                                    var url = camName + '/' + $input[item].value + '/' + camName + '_' + $input[item].value + '.mp4';
-                                                                    OpenInNewTab(url);
-                                                                } else {
-                                                                    var date = $input[item].value;
-                                                                    date = insert(date, 4, '-');
-                                                                    date = insert(date, 7, '-');
-                                                                    var url = 'viewv2.php?single=1&date=' + date + '&hour=00&minute=00&cam_name=' + camName;
-                                                                    OpenInNewTab(url);
-
-                                                                }
-
+                                                    for (var item = 0; item < $input.length; item++) {
+                                                        if ($($input[item]).hasClass('picker__input--active')) {
+                                                            var label = $('#' + $input[item].id);
+                                                            var camName = label.attr('cameraName');
+                                                            if ($input[item].id.indexOf("selectedDateVideo") >= 0) {
+                                                                var url = camName + '/' + $input[item].value + '/' + camName + '_' + $input[item].value + '.mp4';
+                                                                OpenInNewTab(url);
+                                                            } else {
+                                                                var date = $input[item].value;
+                                                                date = insert(date, 4, '-');
+                                                                date = insert(date, 7, '-');
+                                                                var url = 'viewv2.php?single=1&date=' + date + '&hour=00&minute=00&cam_name=' + camName;
+                                                                OpenInNewTab(url);
 
                                                             }
+
 
                                                         }
 
                                                     }
+
                                                 }
-                                            });
-                                        }
-                                        function OpenInNewTab(url) {
-                                            var currentLocation = window.location;
-                                            var win = window.open(currentLocation + url, '_blank');
-                                            win.focus();
-                                        }
-                                        function insert(str, index, value) {
-                                            return str.substr(0, index) + value + str.substr(index);
-                                        }
-                                    </script>
+                                            }
+                                        });
+                                    }
+                                    function OpenInNewTab(url) {
+                                        var currentLocation = window.location;
+                                        var win = window.open(currentLocation + url, '_blank');
+                                        win.focus();
+                                    }
+                                    function insert(str, index, value) {
+                                        return str.substr(0, index) + value + str.substr(index);
+                                    }
+                                </script>
 
                             </div>
 
@@ -347,8 +352,9 @@
                                     <?php
                                 }
                                 ?>
-                                <label for='selectedDate<?php echo $i ?>'
-                                       style='color:#039be5;font-size: inherit !important;'>More</label>
+                                <a class="tooltipped" data-position="bottom" data-delay="50"
+                                   data-tooltip="More Snapshots"> <label for='selectedDate<?php echo $i ?>'
+                                                                         style='color:#039be5;font-size: inherit !important; cursor: pointer'>More</label></a>
                             </div>
                             <div>
                                 <i class="fa fa-clock-o fa-2x blue-text" style="margin-right:7px;"></i>
@@ -365,8 +371,9 @@
                                 }
 
                                 ?>
-                                <label for='selectedDateVideo<?php echo $i ?>'
-                                       style='color:#039be5;font-size: inherit !important;'>More</label>
+                                <a class="tooltipped" data-position="bottom" data-delay="50"
+                                   data-tooltip="More Playbacks"> <label for='selectedDateVideo<?php echo $i ?>'
+                                                                         style='color:#039be5;font-size: inherit !important; cursor: pointer'>More</label></a>
 
                                 <div>
                                     <form>
@@ -374,7 +381,7 @@
                                                     type="date"
                                                     class="datepicker"
                                                     placeholder="Others"
-                                                    cameraName="<?php echo $camera[$i]['camera_name']; ?>"></div>
+                                                    cameraName="<?php echo $cam_name; ?>"></div>
                                     </form>
                                 </div>
 

@@ -284,7 +284,7 @@ function view_images_bookmark($period_n, $period, $camera, $file_path)
 function ten_minute_header($period_n, $period, $camera, $file_path){
 $period_name = $period[$period_n]['period_label'];
 $start = $period[$period_n]['period_start_label'];
-$end = $period[$period_n]['period_end_label'];
+
 ?>
 <div class="container">
     <?php
@@ -296,7 +296,7 @@ $end = $period[$period_n]['period_end_label'];
     function bookmark_header($period_n, $period, $camera, $file_path){
     $period_name = $period[$period_n]['period_label'];
     $start = $period[$period_n]['period_start_label'];
-    $end = $period[$period_n]['period_end_label'];
+
     ?>
     <div class="container">
         <?php

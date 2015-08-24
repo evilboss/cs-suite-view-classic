@@ -8,7 +8,7 @@
 ?>
 <?php require_once("partials/nav.php"); ?>
 <div class='right'>
-    <a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a></div>
+    <a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-2x'></i></a></div>
 <div class="container ">
 
 
@@ -16,7 +16,7 @@
         <li class="collection-item avatar">
             <img src="images/icon-blue.png" alt="" class="circle center-align">
             <img src="images/suite-text.png" alt="" class="suite-text">
-            <span class="title"><h4 class="center-align">Cloudstaff Suite View v1.15</h4> </span>
+            <span class="title"><h4 class="center-align">Cloudstaff Suite View v1.17</h4> </span>
 
             <h5> 2015 <a href="http://cloustaff.com/" target="_blank">
                     <small>&copy; Cloudstaff Inc,.</small>

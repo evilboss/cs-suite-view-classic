@@ -8,7 +8,7 @@
 ?>
 <?php require_once("partials/nav.php"); ?>
 <div class='right'>
-    <a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-5x'></i></a></div>
+    <a href='index.php' class='paging-home-padding'><i class='fa fa-home fa-2x'></i></a></div>
 <div class="container ">
 
 
@@ -17,7 +17,7 @@
             <img src="images/icon-blue.png" alt="" class="circle center-align">
             <img src="images/suite-text.png" alt="" class="suite-text">
             <span class="title"><h4 class="center-align">Help</h4> </span>
-            <p>Some help text</p>
+            <p>Help Text Still not available</p>
         </li>
     </ul>
 </div>

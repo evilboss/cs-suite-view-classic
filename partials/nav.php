@@ -35,7 +35,7 @@ function keytime($period, $action)
         <div class="container">
 
             <img src="images/icon.png" class="icon"/>
-            <a class="brand-logo icon-text-position"><span class="icon-text">Suite</span>View</a>
+            <a href="index.php" class="brand-logo icon-text-position"><span class="icon-text">Suite</span>View</a>
 
 
             <ul class="right">

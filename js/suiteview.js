@@ -6,5 +6,6 @@ $(document).ready(function () {
         var res = window.location.href.replace("index.php", "");
         window.location = res;
     }
+    $(".button-collapse").sideNav();
 });
 
