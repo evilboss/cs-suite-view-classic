@@ -39,7 +39,7 @@ function keytime($period, $action)
 
 
             <ul class="right">
-                <li><a class="dropdown-button"data-activates="user-dropdown"><i
+                <li><a class="dropdown-button" data-activates="user-dropdown"><i
                             class="mdi-navigation-more-vert"></i></a></li>
             </ul>
 
@@ -78,10 +78,13 @@ function keytime($period, $action)
 
 
 <ul id="nav-mobile" class="side-nav">
-    <li class="bold {{ isActiveRoute regex='home' }}"><a href="" title="Home"><i class="mdi-action-home"></i> Home</a>
-    </li>
-    <li class="bold {{ isActiveRoute regex='dashboard' }}"><a href="{{ pathFor 'dashboard' }}" title="Dashboard"><i
-                class="mdi-action-dashboard"></i> Dashboard</a></li>
+    <li class="Bold"><a href="index.php" title="Home"><i class="mdi-action-home fa-2x"> Home</i> </a></li>
+    <li class="Bold"><a title="Bookmarks" class="dropdown-button" href="" data-activates="bookmark-dropdown"><i
+                class="fa fa-bookmark-o fa-2x"> Bookmarks</i></a></li>
+    <li class="Bold"><a title="Filmstrip" class="dropdown-button" href="" data-activates="filmstrip-dropdown"><i
+                class="fa fa-film fa-2x"> Side By Side</i></a></li>
+    <li><a class="Bold" href="about.php"><i
+                class="fa fa-info-circle fa-2x"> About</i></a></li>
 </ul>
 <!--<h6 class="container">(in beta) version 0.13</h6>-->
 

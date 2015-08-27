@@ -231,9 +231,9 @@
                         </div>
                         <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"><a
-                            href="?camera=<?php echo $cam_name; ?>"><?php echo $cam_name; ?>
+                            href="?camera=<?php echo $cam_name; ?>"><?php echo $cam_name; ?></a>
                             <br><?php echo $time_passed; ?>
-                            <i class="material-icons right">more_vert</i></span>
+                            <i class="material-icons right blue-text">more_vert</i></span>
 
                             <p><a href='<?php echo $link_url; ?>' class="tooltipped" data-position='bottom'
                                   data-delay='50' data-tooltip="View today's Snapshots"><i
