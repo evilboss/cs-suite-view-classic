@@ -7,7 +7,7 @@
  */
 ?>
 <head>
-    <meta http-equiv="refresh" content="300">
+    <meta http-equiv="REFRESH" content="60">
     <link rel="shortcut icon" href="images/favicons/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >

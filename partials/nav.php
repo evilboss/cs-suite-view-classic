@@ -42,7 +42,6 @@ function keytime($period, $action)
                 <li><a class="dropdown-button" data-activates="user-dropdown"><i
                             class="mdi-navigation-more-vert"></i></a></li>
             </ul>
-
             <ul class="right hide-on-med-and-down">
                 <li class=""><a href="index.php" title="Home"><i class="mdi-action-home"></i></a></li>
                 <li><a title="Bookmarks" class="dropdown-button" href="" data-activates="bookmark-dropdown"><i
@@ -50,27 +49,18 @@ function keytime($period, $action)
                 <li><a title="Filmstrip" class="dropdown-button" href="" data-activates="filmstrip-dropdown"><i
                             class="fa fa-film"></i></a></li>
             </ul>
-
             <ul id="user-dropdown" class="dropdown-content">
-
                 <li><a href="" data-action="logout" class="blue-text"><i class="mdi-action-lock"></i> Sign Out</a></li>
-
                 <li><a class="blue-text" href="">Sign in</a></li>
                 <li><a class="blue-text" href="">Register</a></li>
                 <li><a class="blue-text" href="about.php">About</a></li>
-
             </ul>
             <ul id="bookmark-dropdown" class="dropdown-content">
-
                 <?php echo keytime($period, 'bookmark') ?>
-
             </ul>
             <ul id="filmstrip-dropdown" class="dropdown-content">
-
                 <?php echo keytime($period, 'period') ?>
-
             </ul>
-
             <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
         </div>
     </div>
@@ -78,13 +68,13 @@ function keytime($period, $action)
 
 
 <ul id="nav-mobile" class="side-nav">
-    <li class="Bold"><a href="index.php" title="Home"><i class="mdi-action-home fa-2x"> Home</i> </a></li>
+    <li class="Bold"><a href="index.php" title="Home"><i class="mdi-action-home"> Home</i> </a></li>
     <li class="Bold"><a title="Bookmarks" class="dropdown-button" href="" data-activates="bookmark-dropdown"><i
-                class="fa fa-bookmark-o fa-2x"> Bookmarks</i></a></li>
-    <li class="Bold"><a title="Filmstrip" class="dropdown-button" href="" data-activates="filmstrip-dropdown"><i
-                class="fa fa-film fa-2x"> Side By Side</i></a></li>
-    <li><a class="Bold" href="about.php"><i
-                class="fa fa-info-circle fa-2x"> About</i></a></li>
+                class="fa fa-bookmark-o"> Bookmarks</i></a></li>
+    <li class="Bold"><a title="Side By Side" class="dropdown-button" href="" data-activates="filmstrip-dropdown"><i
+                class="fa fa-film"> Side By Side</i></a></li>
+    <li><a class="Bold" href="about.php" title="About"><i
+                class="fa fa-info-circle"> About</i></a></li>
 </ul>
 <!--<h6 class="container">(in beta) version 0.13</h6>-->
 

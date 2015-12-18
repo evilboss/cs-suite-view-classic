@@ -4,8 +4,9 @@
 <?php require_once("partials/nav.php"); ?>
 <div class="container">
     <div class="row">
-
         <?php
+        $condition = "green";
+
         function get_date_list($cam_name, $file_path)
         {
 
@@ -15,7 +16,6 @@
             rsort($scanned_directory);
             return $scanned_directory;
         }
-
         function get_other_mp4($camera_name, $file_path, $date)
         {
             $new_path = $file_path . $camera_name . "/";
@@ -239,6 +239,16 @@
         ?>
 
         <div class="col s12">
+            <?php
+            foreach ($camera as $myCam) {
+                $cam_name = $myCam['camera_name'];
+                $current_status = get_camera_status($cam_name, $file_path);
+                if($current_status=="Failed"){
+                    $condition = "red";
+                    break;
+                }
+            }
+            ?><h1>Condition <?php echo $condition; ?></h1>
             <table class="hoverable">
                 <thead>
                 <tr>
@@ -247,6 +257,7 @@
                     <th data-field="name">
                         Most Recent File
                     </th>
+
                     <th data-field="name">
                         Status
                     </th>

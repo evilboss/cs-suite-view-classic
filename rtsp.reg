@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\rtsp]
+@="Real Time Streaming Protocol"
+"URL Protocol"=""
+[HKEY_CLASSES_ROOT\rtsp\shell]
+[HKEY_CLASSES_ROOT\rtsp\shell\open]
+[HKEY_CLASSES_ROOT\rtsp\shell\open\command]
+@="\"C:\\Program Files\\VideoLan\\VLC\\vlc.exe\" \"%1\""
